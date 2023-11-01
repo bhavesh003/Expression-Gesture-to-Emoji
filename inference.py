@@ -23,7 +23,6 @@ def get_emoji(label):
         "one": "emojis/one.png",
         "peace": "emojis/peace.png",
         "praying": "emojis/praying.png",
-        "raised hand": "emojis/raised hand.png",
         "sleep": "emojis/sleep.png",
         "surprise": "emojis/surprise.png",
         "tongue out with wink": "emojis/tongue out with wink.png",
@@ -80,7 +79,7 @@ while True:
             emoji_img = cv2.imread(emoji_path)
             
             # Resize the emoji image to match the region
-            emoji_img = cv2.resize(emoji_img, (200, 200))  # Adjust the size as needed
+            emoji_img = cv2.resize(emoji_img, (300, 300))  # Adjust the size as needed
 
             # Place the emoji on the frame at a specific location
             frm[10:10 + emoji_img.shape[0], 10:10 + emoji_img.shape[1]] = emoji_img
