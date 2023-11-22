@@ -3,21 +3,17 @@ import numpy as np
 import mediapipe as mp
 from keras.models import load_model
 
-# Load your trained model and labels
 model = load_model("model.h5")
 label = np.load("labels.npy")
 
-# Define a function to map labels to emoji image file paths
 def get_emoji(label):
     emojis = {
-        # Add more labels and corresponding emoji image paths here
         
         "angry": "emojis/angry.png",
         "eye roll": "emojis/eye roll.png",
         "goodluck": "emojis/goodluck.png",
         "happy": "emojis/happy.png",
         "hi": "emojis/hi.png",
-        "kiss": "emojis/kiss.png",
         "nope": "emojis/nope.png",
         "normal": "emojis/normal.png",
         "one": "emojis/one.png",
@@ -31,7 +27,7 @@ def get_emoji(label):
     }
     return emojis.get(label, "")
 
-# Initialize Mediapipe and OpenCV components
+
 holistic = mp.solutions.holistic
 hands = mp.solutions.hands
 holis = holistic.Holistic()
@@ -78,10 +74,8 @@ while True:
         if emoji_path:
             emoji_img = cv2.imread(emoji_path)
             
-            # Resize the emoji image to match the region
-            emoji_img = cv2.resize(emoji_img, (300, 300))  # Adjust the size as needed
+            emoji_img = cv2.resize(emoji_img, (300, 300))
 
-            # Place the emoji on the frame at a specific location
             frm[10:10 + emoji_img.shape[0], 10:10 + emoji_img.shape[1]] = emoji_img
 
         cv2.putText(frm, pred, (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0, (255, 0, 0), 0)
@@ -95,7 +89,3 @@ while True:
         cv2.destroyAllWindows()
         cap.release()
         break
-
-
-
-
